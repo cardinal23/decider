@@ -10,6 +10,12 @@
 
 #import "MainViewController.h"
 
+#import "Question.h"
+#import "Answer.h"
+#import "Vote.h"
+#import "Ballot.h"
+#import "Choice.h"
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -18,6 +24,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self loadFakeData];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
@@ -67,6 +75,160 @@
             abort();
         } 
     }
+}
+
+- (void)deleteAllEntitiesWithName:(NSString *)entityName
+{
+    NSFetchRequest * allEntities = [[NSFetchRequest alloc] init];
+    [allEntities setEntity:[NSEntityDescription entityForName:entityName
+                                        inManagedObjectContext:self.managedObjectContext]];
+    
+    [allEntities setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * entities = [self.managedObjectContext executeFetchRequest:allEntities error:&error];
+    
+    for (NSManagedObject * entity in entities) {
+        [self.managedObjectContext deleteObject:entity];
+    }
+}
+
+- (void)clearDatabase
+{
+    [self deleteAllEntitiesWithName:@"Question"];
+    [self deleteAllEntitiesWithName:@"Answer"];
+    [self deleteAllEntitiesWithName:@"Vote"];
+    [self deleteAllEntitiesWithName:@"Ballot"];
+    [self deleteAllEntitiesWithName:@"Choice"];
+
+    NSError *saveError = nil;
+    [self.managedObjectContext save:&saveError];
+    
+    if (saveError) {
+        NSLog(@"%@", saveError);
+    }
+}
+
+- (Answer *)findAnswerWithText:(NSString *)text
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"text == %@", text];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Answer"
+                                        inManagedObjectContext:self.managedObjectContext]];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest
+                                                                error:&error];
+    
+    if ([results count] == 0) {
+        NSLog(@"No answer found for text '%@'", text);
+        return nil;
+    }
+        
+    return results[0];
+}
+
+// For easily entering fake data.
+// Expecting answers with text "A", "B", "C", "D", "E"
+// Used for implementing the sample from http://en.wikipedia.org/wiki/Schulze_method
+
+- (Ballot *)ballotFromChoicesString:(NSString *)choicesString
+{
+    Ballot *ballot = [Ballot insertInManagedObjectContext:self.managedObjectContext];
+    
+    for (NSInteger i = 0; i < [choicesString length]; i++) {
+        NSString *answerText = [NSString stringWithFormat:@"%c", [choicesString characterAtIndex:i]];
+        Answer *answer = [self findAnswerWithText:answerText];
+        
+        if (!answer) {
+            NSLog(@"Not found: %@", answerText);
+            continue;
+        }
+        
+        Choice *choice = [Choice insertInManagedObjectContext:self.managedObjectContext];
+        choice.answer = answer;
+        choice.rank = @([choicesString length] - i);
+        [ballot addChoicesObject:choice];
+    }
+    
+    return ballot;
+}
+
+- (void)addNumberOfBallots:(NSInteger)numberOfBallots
+         withChoicesString:(NSString *)choicesString
+                    toVote:(Vote *)vote
+{
+    for (NSUInteger i = 0; i < numberOfBallots; i++) {
+        Ballot *ballot = [self ballotFromChoicesString:choicesString];
+        [vote addBallotsObject:ballot];
+    }
+}
+
+- (void)loadFakeData
+{
+    [self clearDatabase];
+    
+    Question *question = [Question insertInManagedObjectContext:self.managedObjectContext];
+    question.text = @"Question Text";
+    
+    Answer *answerA = [Answer insertInManagedObjectContext:self.managedObjectContext];
+    answerA.text = @"A";
+    [question addAnswersObject:answerA];
+    
+    Answer *answerB = [Answer insertInManagedObjectContext:self.managedObjectContext];
+    answerB.text = @"B";
+    [question addAnswersObject:answerB];
+
+    Answer *answerC = [Answer insertInManagedObjectContext:self.managedObjectContext];
+    answerC.text = @"C";
+    [question addAnswersObject:answerC];
+
+    Answer *answerD = [Answer insertInManagedObjectContext:self.managedObjectContext];
+    answerD.text = @"D";
+    [question addAnswersObject:answerD];
+
+    Answer *answerE = [Answer insertInManagedObjectContext:self.managedObjectContext];
+    answerE.text = @"E";
+    [question addAnswersObject:answerE];
+
+    Vote *vote = [Vote voteWithQuestion:question
+                      andManagedContext:self.managedObjectContext];
+    
+    [self addNumberOfBallots:5
+           withChoicesString:@"ACBED"
+                      toVote:vote];
+
+    [self addNumberOfBallots:5
+           withChoicesString:@"ADECB"
+                      toVote:vote];
+
+    [self addNumberOfBallots:8
+           withChoicesString:@"BEDAC"
+                      toVote:vote];
+
+    [self addNumberOfBallots:3
+           withChoicesString:@"CABED"
+                      toVote:vote];
+
+    [self addNumberOfBallots:7
+           withChoicesString:@"CAEBD"
+                      toVote:vote];
+
+    
+    [self addNumberOfBallots:2
+           withChoicesString:@"CBADE"
+                      toVote:vote];
+
+    [self addNumberOfBallots:7
+           withChoicesString:@"DCEBA"
+                      toVote:vote];
+
+    [self addNumberOfBallots:8
+           withChoicesString:@"EBADC"
+                      toVote:vote];
+
+    [self saveContext];
 }
 
 #pragma mark - Core Data stack
