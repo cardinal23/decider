@@ -1,5 +1,5 @@
 #import "Vote.h"
-
+#import "Question.h"
 
 @interface Vote ()
 
@@ -17,6 +17,17 @@
     vote.timestamp = [NSDate date];
     
     return vote;
+}
+
+- (NSDictionary *)makePreferenceDiGraph
+{
+    NSMutableDictionary *preferences = [NSMutableDictionary dictionary];
+    
+    NSSet *answers = self.question.answers;
+    for (Answer *answer in answers) {
+        
+    }
+    return preferences;
 }
 
 @end
