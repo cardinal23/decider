@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E4465F3A-AE4E-49DF-A035-589699BFBDBF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Decider-Data</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>86CF84DD-F27C-4188-88C4-28CE0990F2A3</key>
+		<string>https://github.com/cardinal23/decider.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Decider-Data.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>86CF84DD-F27C-4188-88C4-28CE0990F2A3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cardinal23/decider.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>86CF84DD-F27C-4188-88C4-28CE0990F2A3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>86CF84DD-F27C-4188-88C4-28CE0990F2A3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Decider-Data</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,5 +1,9 @@
 #import "_Ballot.h"
 
+@class Answer;
+
 @interface Ballot : _Ballot {}
-// Custom logic goes here.
+
+- (BOOL)isAnswerA:(Answer *)answerA rankedHigherThanAnswerB:(Answer *)answerB;
+
 @end

@@ -229,6 +229,8 @@
                       toVote:vote];
 
     [self saveContext];
+    
+    [vote makeResultsDictionaryWithStrongestPathGraph:[vote makeStrongestPathsGraphsWithPreferenceGraph:[vote makePreferenceDiGraph]]];
 }
 
 #pragma mark - Core Data stack
