@@ -7,8 +7,10 @@
 //
 
 #import "MainViewController.h"
+#import "NewVoteViewController.h"
 
 @interface MainViewController ()
+- (IBAction)newVoteTapped:(id)sender;
 
 @end
 
@@ -41,4 +43,11 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
+#pragma mark - New Vote
+
+- (IBAction)newVoteTapped:(id)sender {
+    NewVoteViewController *newVoteViewController = [[NewVoteViewController alloc] initWithNibName:nil bundle:nil];
+    newVoteViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:newVoteViewController animated:YES completion:nil];
+}
 @end
