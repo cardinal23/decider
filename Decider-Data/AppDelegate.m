@@ -22,6 +22,17 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+static AppDelegate *_instance;
+
++ (AppDelegate *)sharedInstance
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [[AppDelegate alloc] init];
+    });
+    return _instance;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self loadFakeData];
@@ -29,7 +40,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
-    self.window.rootViewController = self.mainViewController;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    navigationController.navigationBarHidden = YES;
+    
+//    self.window.rootViewController = self.mainViewController;
+    self.window.rootViewController = navigationController;
     self.mainViewController.managedObjectContext = self.managedObjectContext;
     [self.window makeKeyAndVisible];
     return YES;
@@ -170,7 +185,7 @@
     [self clearDatabase];
     
     Question *question = [Question insertInManagedObjectContext:self.managedObjectContext];
-    question.text = @"Question Text";
+    question.text = @"This is a question to be voted on?";
     
     Answer *answerA = [Answer insertInManagedObjectContext:self.managedObjectContext];
     answerA.text = @"A";

@@ -48,6 +48,7 @@
 - (IBAction)newVoteTapped:(id)sender {
     NewVoteViewController *newVoteViewController = [[NewVoteViewController alloc] initWithNibName:nil bundle:nil];
     newVoteViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:newVoteViewController animated:YES completion:nil];
+//    [self presentViewController:newVoteViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:newVoteViewController animated:YES];
 }
 @end

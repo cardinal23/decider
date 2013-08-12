@@ -20,6 +20,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
++ (AppDelegate *)sharedInstance;
 
 @property (strong, nonatomic) MainViewController *mainViewController;
 
