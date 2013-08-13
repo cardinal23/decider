@@ -6,14 +6,10 @@
 //  Copyright (c) 2013 Mike Dockerty. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
-
 #import <CoreData/CoreData.h>
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
+@interface MainViewController : UIViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-- (IBAction)showInfo:(id)sender;
 
 @end

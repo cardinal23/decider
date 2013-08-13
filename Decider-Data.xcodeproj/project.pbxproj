@@ -33,9 +33,7 @@
 		212C4EEC17A08327007F8FB4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 212C4EEB17A08327007F8FB4 /* Default-568h@2x.png */; };
 		212C4EEF17A08327007F8FB4 /* Decider_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 212C4EED17A08327007F8FB4 /* Decider_Data.xcdatamodeld */; };
 		212C4EF217A08327007F8FB4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C4EF117A08327007F8FB4 /* MainViewController.m */; };
-		212C4EF517A08327007F8FB4 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C4EF417A08327007F8FB4 /* FlipsideViewController.m */; };
 		212C4EF817A08327007F8FB4 /* MainViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212C4EF617A08327007F8FB4 /* MainViewController~iphone.xib */; };
-		212C4EFB17A08327007F8FB4 /* FlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212C4EF917A08327007F8FB4 /* FlipsideViewController.xib */; };
 		212C4F1B17A19E55007F8FB4 /* _Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C4F0817A19E55007F8FB4 /* _Answer.m */; };
 		212C4F1C17A19E55007F8FB4 /* _Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C4F0A17A19E55007F8FB4 /* _Ballot.m */; };
 		212C4F1D17A19E55007F8FB4 /* _Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C4F0C17A19E55007F8FB4 /* _Choice.m */; };
@@ -51,6 +49,9 @@
 		216BC64017B9386800651FFB /* NewVoteViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC63E17B9386800651FFB /* NewVoteViewController~ipad.xib */; };
 		216BC64417B94B6900651FFB /* ElectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC64217B94B6900651FFB /* ElectionViewController.m */; };
 		216BC64517B94B6900651FFB /* ElectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC64317B94B6900651FFB /* ElectionViewController.xib */; };
+		216BC64917B96DB400651FFB /* FillBallotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC64717B96DB400651FFB /* FillBallotViewController.m */; };
+		216BC64A17B96DB400651FFB /* FillBallotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC64817B96DB400651FFB /* FillBallotViewController.xib */; };
+		216BC65017B9802F00651FFB /* ChoiceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC64F17B9802F00651FFB /* ChoiceControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,10 +72,7 @@
 		212C4EEE17A08327007F8FB4 /* Decider_Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Decider_Data.xcdatamodel; sourceTree = "<group>"; };
 		212C4EF017A08327007F8FB4 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		212C4EF117A08327007F8FB4 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		212C4EF317A08327007F8FB4 /* FlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
-		212C4EF417A08327007F8FB4 /* FlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		212C4EF717A08327007F8FB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/MainViewController~iphone.xib"; sourceTree = "<group>"; };
-		212C4EFA17A08327007F8FB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FlipsideViewController.xib; sourceTree = "<group>"; };
 		212C4F0717A19E55007F8FB4 /* _Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Answer.h; sourceTree = "<group>"; };
 		212C4F0817A19E55007F8FB4 /* _Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Answer.m; sourceTree = "<group>"; };
 		212C4F0917A19E55007F8FB4 /* _Ballot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Ballot.h; sourceTree = "<group>"; };
@@ -102,6 +100,11 @@
 		216BC64117B94B6900651FFB /* ElectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectionViewController.h; sourceTree = "<group>"; };
 		216BC64217B94B6900651FFB /* ElectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionViewController.m; sourceTree = "<group>"; };
 		216BC64317B94B6900651FFB /* ElectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ElectionViewController.xib; sourceTree = "<group>"; };
+		216BC64617B96DB400651FFB /* FillBallotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillBallotViewController.h; sourceTree = "<group>"; };
+		216BC64717B96DB400651FFB /* FillBallotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillBallotViewController.m; sourceTree = "<group>"; };
+		216BC64817B96DB400651FFB /* FillBallotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FillBallotViewController.xib; sourceTree = "<group>"; };
+		216BC64E17B9802F00651FFB /* ChoiceControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceControl.h; sourceTree = "<group>"; };
+		216BC64F17B9802F00651FFB /* ChoiceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,12 +153,10 @@
 		212C4EDB17A08327007F8FB4 /* Decider-Data */ = {
 			isa = PBXGroup;
 			children = (
+				212C4F0617A19E55007F8FB4 /* Model */,
 				212C4EE417A08327007F8FB4 /* AppDelegate.h */,
 				212C4EE517A08327007F8FB4 /* AppDelegate.m */,
 				212C4EED17A08327007F8FB4 /* Decider_Data.xcdatamodeld */,
-				212C4EF317A08327007F8FB4 /* FlipsideViewController.h */,
-				212C4EF417A08327007F8FB4 /* FlipsideViewController.m */,
-				212C4EF917A08327007F8FB4 /* FlipsideViewController.xib */,
 				212C4EF017A08327007F8FB4 /* MainViewController.h */,
 				212C4EF117A08327007F8FB4 /* MainViewController.m */,
 				216BC63A17B9335E00651FFB /* MainViewController~ipad.xib */,
@@ -166,7 +167,11 @@
 				216BC64117B94B6900651FFB /* ElectionViewController.h */,
 				216BC64217B94B6900651FFB /* ElectionViewController.m */,
 				216BC64317B94B6900651FFB /* ElectionViewController.xib */,
-				212C4F0617A19E55007F8FB4 /* Model */,
+				216BC64617B96DB400651FFB /* FillBallotViewController.h */,
+				216BC64717B96DB400651FFB /* FillBallotViewController.m */,
+				216BC64817B96DB400651FFB /* FillBallotViewController.xib */,
+				216BC64E17B9802F00651FFB /* ChoiceControl.h */,
+				216BC64F17B9802F00651FFB /* ChoiceControl.m */,
 				212C4EDC17A08327007F8FB4 /* Supporting Files */,
 			);
 			path = "Decider-Data";
@@ -273,7 +278,7 @@
 				212C4EEA17A08327007F8FB4 /* Default@2x.png in Resources */,
 				212C4EEC17A08327007F8FB4 /* Default-568h@2x.png in Resources */,
 				212C4EF817A08327007F8FB4 /* MainViewController~iphone.xib in Resources */,
-				212C4EFB17A08327007F8FB4 /* FlipsideViewController.xib in Resources */,
+				216BC64A17B96DB400651FFB /* FillBallotViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,12 +310,13 @@
 				216BC64417B94B6900651FFB /* ElectionViewController.m in Sources */,
 				212C4EEF17A08327007F8FB4 /* Decider_Data.xcdatamodeld in Sources */,
 				212C4EF217A08327007F8FB4 /* MainViewController.m in Sources */,
-				212C4EF517A08327007F8FB4 /* FlipsideViewController.m in Sources */,
 				212C4F1B17A19E55007F8FB4 /* _Answer.m in Sources */,
 				212C4F1C17A19E55007F8FB4 /* _Ballot.m in Sources */,
 				212C4F1D17A19E55007F8FB4 /* _Choice.m in Sources */,
+				216BC65017B9802F00651FFB /* ChoiceControl.m in Sources */,
 				212C4F1E17A19E55007F8FB4 /* _Question.m in Sources */,
 				216BC63F17B9386800651FFB /* NewVoteViewController.m in Sources */,
+				216BC64917B96DB400651FFB /* FillBallotViewController.m in Sources */,
 				212C4F1F17A19E55007F8FB4 /* _Vote.m in Sources */,
 				212C4F2017A19E55007F8FB4 /* Answer.m in Sources */,
 				212C4F2117A19E55007F8FB4 /* Ballot.m in Sources */,
@@ -337,14 +343,6 @@
 				212C4EF717A08327007F8FB4 /* en */,
 			);
 			name = "MainViewController~iphone.xib";
-			sourceTree = "<group>";
-		};
-		212C4EF917A08327007F8FB4 /* FlipsideViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				212C4EFA17A08327007F8FB4 /* en */,
-			);
-			name = FlipsideViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

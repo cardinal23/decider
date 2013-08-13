@@ -7,6 +7,8 @@
 //
 
 #import "ElectionViewController.h"
+#import "FillBallotViewController.h"
+
 #import "Vote.h"
 #import "Question.h"
 
@@ -56,6 +58,8 @@
 }
 
 - (IBAction)fillBallotTapped:(id)sender {
+    FillBallotViewController *fillBallotViewController = [[FillBallotViewController alloc] initWithVote:self.vote];
+    [self.navigationController pushViewController:fillBallotViewController animated:YES];
 }
 
 - (IBAction)calculateResultsTapped:(id)sender {

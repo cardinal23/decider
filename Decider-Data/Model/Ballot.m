@@ -1,4 +1,6 @@
 #import "Ballot.h"
+#import "Vote.h"
+#import "Question.h"
 #import "Choice.h"
 #import "Answer.h"
 
@@ -10,6 +12,19 @@
 
 
 @implementation Ballot
+
+- (void)initChoicesWithManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSSet *answers = self.vote.question.answers;
+    
+    for (Answer *answer in answers) {
+        Choice *choice = [Choice insertInManagedObjectContext:context];
+        
+        choice.answer = answer;
+        choice.rank = @(-1);
+        [self addChoicesObject:choice];
+    }
+}
 
 - (BOOL) isAnswerA:(Answer *)answerA rankedHigherThanAnswerB:(Answer *)answerB
 {
