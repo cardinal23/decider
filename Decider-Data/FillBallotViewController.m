@@ -19,6 +19,8 @@
 const CGFloat kChoiceTopMargin = 200.0f;
 const CGFloat kChoiceWidth = 400.0f;
 const CGFloat KChoiceHeight = 66.0f;
+const CGFloat kChoiceUnrankedMargin = 50.0f;
+const CGFloat kChoiceRankedMargin = 572.0f;
 
 @interface FillBallotViewController ()
 
@@ -36,6 +38,7 @@ const CGFloat KChoiceHeight = 66.0f;
 
 @property (strong, nonatomic) ChoiceControl *activeChoice;
 @property (nonatomic) CGPoint activeOffset;
+@property (strong, nonatomic) NSMutableArray *activeList;
 
 @end
 
@@ -63,14 +66,13 @@ const CGFloat KChoiceHeight = 66.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     self.ballot = [Ballot insertInManagedObjectContext:[AppDelegate sharedInstance].managedObjectContext];
     self.ballot.vote = self.vote;
     [self.ballot initChoicesWithManagedObjectContext:[AppDelegate sharedInstance].managedObjectContext];
     
     self.longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
-    self.longPressRecognizer.minimumPressDuration = 0.1f;
+    self.longPressRecognizer.minimumPressDuration = 0.0f;
     [self.view addGestureRecognizer:self.longPressRecognizer];
     
     self.unrankedViews = [NSMutableArray array];
@@ -108,16 +110,33 @@ const CGFloat KChoiceHeight = 66.0f;
 - (IBAction)submitButtonTapped:(id)sender {
 }
 
+- (void)setRankForRankedList
+{
+    [self.rankedViews enumerateObjectsUsingBlock:^(ChoiceControl *choiceControl, NSUInteger index, BOOL *stop) {
+        choiceControl.choice.rank = @([self.rankedViews count] - index);
+        choiceControl.listOrder = index + 1;
+    }];
+    
+}
+
 #pragma mark - Choices Layout
 
 - (void)layoutChoicesAnimated:(BOOL)animated
 {
     void (^changesBlock)(void) = ^ {
-        [self.unrankedViews enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
-            ChoiceControl *choiceControl = obj;
+        [self.unrankedViews enumerateObjectsUsingBlock:^(ChoiceControl *choiceControl, NSUInteger index, BOOL *stop) {
             if (!choiceControl.active) {
-                choiceControl.frame = CGRectMake(50.0f,
-                                                 kChoiceTopMargin + index * KChoiceHeight,
+                choiceControl.frame = CGRectMake(kChoiceUnrankedMargin,
+                                                 kChoiceTopMargin + index * (KChoiceHeight - 1),
+                                                 kChoiceWidth,
+                                                 KChoiceHeight);
+            }
+        }];
+        
+        [self.rankedViews enumerateObjectsUsingBlock:^(ChoiceControl *choiceControl, NSUInteger index, BOOL *stop) {
+            if (!choiceControl.active) {
+                choiceControl.frame = CGRectMake(kChoiceRankedMargin,
+                                                 kChoiceTopMargin + index * (KChoiceHeight - 1),
                                                  kChoiceWidth,
                                                  KChoiceHeight);
             }
@@ -137,7 +156,7 @@ const CGFloat KChoiceHeight = 66.0f;
         return 0;
     }
     
-    return MIN((NSUInteger)(floorf(((point.y - kChoiceTopMargin) / KChoiceHeight))), maxIndex);
+    return MIN(maxIndex, (NSUInteger)(floorf(((point.y - kChoiceTopMargin) / KChoiceHeight))));
 }
 
 #pragma mark - UILongPressGestureRecognizer
@@ -147,7 +166,9 @@ const CGFloat KChoiceHeight = 66.0f;
     CGPoint location = [gestureRecognizer locationInView:self.view];
     
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        for (ChoiceControl *choiceControl in self.unrankedViews) {
+        self.activeList = location.x < self.view.center.x ? self.unrankedViews : self.rankedViews;
+
+        for (ChoiceControl *choiceControl in self.activeList) {
             if (CGRectContainsPoint(choiceControl.frame, location)) {
                 choiceControl.active = YES;
                 self.activeChoice = choiceControl;
@@ -160,27 +181,48 @@ const CGFloat KChoiceHeight = 66.0f;
     }
     
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        self.activeChoice.center = CGPointMake(location.x + self.activeOffset.x, location.y + self.activeOffset.y);
-
-        NSUInteger oldIndex = [self.unrankedViews indexOfObject:self.activeChoice];
-
-        NSUInteger newIndex = [self indexForPoint:location withMaxIndex:[self.unrankedViews count] - 1];
-
-//        NSLog(@"%d %d", oldIndex, newIndex);
-        
-        if (oldIndex != newIndex) {
-            ChoiceControl *replacedChoice = [self.unrankedViews objectAtIndex:newIndex];
+        if (self.activeChoice) {
+            self.activeChoice.center = CGPointMake(location.x + self.activeOffset.x, location.y + self.activeOffset.y);
             
-            [self.unrankedViews replaceObjectAtIndex:oldIndex withObject:replacedChoice];
-            [self.unrankedViews replaceObjectAtIndex:newIndex withObject:self.activeChoice];
+            NSMutableArray *newActiveList = self.activeChoice.center.x < self.view.center.x ? self.unrankedViews : self.rankedViews;
+            
+            if (newActiveList != self.activeList) {
+                [self.activeList removeObject:self.activeChoice];
+                self.activeList = newActiveList;
+                
+                if (self.activeList == self.rankedViews) {
+                    self.activeChoice.ranked = YES;
+                } else {
+                    self.activeChoice.ranked = NO;
+                }
+            }
+            
+            if ([self.activeList containsObject:self.activeChoice]) {
+                NSUInteger oldIndex = [self.activeList indexOfObject:self.activeChoice];
+                NSUInteger newIndex = [self indexForPoint:location withMaxIndex:[self.activeList count] - 1];
+
+                if (oldIndex != newIndex) {
+                    ChoiceControl *replacedChoice = [self.activeList objectAtIndex:newIndex];
+                    [self.activeList replaceObjectAtIndex:oldIndex withObject:replacedChoice];
+                    [self.activeList replaceObjectAtIndex:newIndex withObject:self.activeChoice];
+                }
+            } else {
+                if ([self.activeList count] == 0) {
+                    [self.activeList addObject:self.activeChoice];
+                } else {
+                    [self.activeList insertObject:self.activeChoice atIndex:[self indexForPoint:location withMaxIndex:[self.activeList count]]];
+                }
+            }
+            
+            [self setRankForRankedList];
+            [self layoutChoicesAnimated:YES];
         }
-        
-        [self layoutChoicesAnimated:YES];
     }
     
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         self.activeChoice.active = NO;
         self.activeChoice = nil;
+        self.activeList = nil;
         [self layoutChoicesAnimated:YES];
     }
 }

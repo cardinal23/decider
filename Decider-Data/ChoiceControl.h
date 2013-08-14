@@ -16,5 +16,7 @@
 
 @property (strong, nonatomic) Choice *choice;
 @property (nonatomic) BOOL active;
+@property (nonatomic) BOOL ranked;
+@property (nonatomic) NSUInteger listOrder;
 
 @end
