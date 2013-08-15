@@ -245,7 +245,7 @@ static AppDelegate *_instance;
 
     [self saveContext];
     
-    [vote makeResultsDictionaryWithStrongestPathGraph:[vote makeStrongestPathsGraphsWithPreferenceGraph:[vote makePreferenceDiGraph]]];
+    [vote getResultsList];
 }
 
 #pragma mark - Core Data stack

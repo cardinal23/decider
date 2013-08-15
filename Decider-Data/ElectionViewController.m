@@ -8,6 +8,7 @@
 
 #import "ElectionViewController.h"
 #import "FillBallotViewController.h"
+#import "ResultsViewController.h"
 
 #import "Vote.h"
 #import "Question.h"
@@ -63,5 +64,8 @@
 }
 
 - (IBAction)calculateResultsTapped:(id)sender {
+    ResultsViewController *resultsViewController = [[ResultsViewController alloc] initWithVote:self.vote];
+    [self.navigationController pushViewController:resultsViewController animated:YES];
 }
+
 @end

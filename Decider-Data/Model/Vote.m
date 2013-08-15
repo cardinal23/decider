@@ -123,4 +123,25 @@
     return results;
 }
 
+- (NSArray *)getResultsList
+{
+    NSDictionary *resultsDictionary = [self makeResultsDictionaryWithStrongestPathGraph:[self makeStrongestPathsGraphsWithPreferenceGraph:[self makePreferenceDiGraph]]];
+    
+    NSArray *sortedArray = [[resultsDictionary allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSNumber *firstRank = resultsDictionary[a];
+        NSNumber *secondRank = resultsDictionary[b];
+        
+        return [firstRank compare:secondRank];
+    }];
+    
+    // Reverse the order
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:[sortedArray count]];
+    NSEnumerator *enumerator = [sortedArray reverseObjectEnumerator];
+    for (id element in enumerator) {
+        [results addObject:element];
+    }
+    
+    return results;
+}
+
 @end

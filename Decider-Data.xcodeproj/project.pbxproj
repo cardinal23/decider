@@ -54,6 +54,8 @@
 		216BC65017B9802F00651FFB /* ChoiceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC64F17B9802F00651FFB /* ChoiceControl.m */; };
 		216BC65417BC1E4700651FFB /* CreateVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC65217BC1E4700651FFB /* CreateVoteViewController.m */; };
 		216BC65517BC1E4700651FFB /* CreateVoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC65317BC1E4700651FFB /* CreateVoteViewController.xib */; };
+		216BC65917BD2F8100651FFB /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC65717BD2F8100651FFB /* ResultsViewController.m */; };
+		216BC65A17BD2F8100651FFB /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC65817BD2F8100651FFB /* ResultsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,9 @@
 		216BC65117BC1E4700651FFB /* CreateVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVoteViewController.h; sourceTree = "<group>"; };
 		216BC65217BC1E4700651FFB /* CreateVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVoteViewController.m; sourceTree = "<group>"; };
 		216BC65317BC1E4700651FFB /* CreateVoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateVoteViewController.xib; sourceTree = "<group>"; };
+		216BC65617BD2F8100651FFB /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		216BC65717BD2F8100651FFB /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		216BC65817BD2F8100651FFB /* ResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +182,9 @@
 				216BC63C17B9386800651FFB /* NewVoteViewController.h */,
 				216BC63D17B9386800651FFB /* NewVoteViewController.m */,
 				216BC63E17B9386800651FFB /* NewVoteViewController~ipad.xib */,
+				216BC65617BD2F8100651FFB /* ResultsViewController.h */,
+				216BC65717BD2F8100651FFB /* ResultsViewController.m */,
+				216BC65817BD2F8100651FFB /* ResultsViewController.xib */,
 				216BC64E17B9802F00651FFB /* ChoiceControl.h */,
 				216BC64F17B9802F00651FFB /* ChoiceControl.m */,
 				212C4EDC17A08327007F8FB4 /* Supporting Files */,
@@ -284,6 +292,7 @@
 				212C4EE017A08327007F8FB4 /* InfoPlist.strings in Resources */,
 				216BC65517BC1E4700651FFB /* CreateVoteViewController.xib in Resources */,
 				212C4EE817A08327007F8FB4 /* Default.png in Resources */,
+				216BC65A17BD2F8100651FFB /* ResultsViewController.xib in Resources */,
 				212C4EEA17A08327007F8FB4 /* Default@2x.png in Resources */,
 				212C4EEC17A08327007F8FB4 /* Default-568h@2x.png in Resources */,
 				212C4EF817A08327007F8FB4 /* MainViewController~iphone.xib in Resources */,
@@ -333,6 +342,7 @@
 				212C4F2217A19E55007F8FB4 /* Choice.m in Sources */,
 				212C4F2317A19E55007F8FB4 /* Question.m in Sources */,
 				212C4F2417A19E55007F8FB4 /* Vote.m in Sources */,
+				216BC65917BD2F8100651FFB /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
