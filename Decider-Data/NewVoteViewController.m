@@ -10,6 +10,7 @@
 
 #import "NewVoteViewController.h"
 #import "ElectionViewController.h"
+#import "CreateVoteViewController.h"
 
 #import "Vote.h"
 #import "Question.h"
@@ -17,9 +18,10 @@
 @interface NewVoteViewController () <UITableViewDataSource, UITableViewDelegate>
 
 - (IBAction)backTapped:(id)sender;
+- (IBAction)createNewVoteTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *votes;
+@property (strong, nonatomic) NSArray *questions;
 
 @end
 
@@ -51,11 +53,11 @@
     [super viewWillAppear:animated];
     
     NSFetchRequest * allEntities = [[NSFetchRequest alloc] init];
-    [allEntities setEntity:[NSEntityDescription entityForName:@"Vote"
+    [allEntities setEntity:[NSEntityDescription entityForName:@"Question"
                                        inManagedObjectContext:[AppDelegate sharedInstance].managedObjectContext]];
     
     NSError * error = nil;
-    self.votes = [[AppDelegate sharedInstance].managedObjectContext executeFetchRequest:allEntities error:&error];
+    self.questions = [[AppDelegate sharedInstance].managedObjectContext executeFetchRequest:allEntities error:&error];
     
     [self.tableView reloadData];
 }
@@ -64,7 +66,7 @@
      
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.votes count];
+    return [self.questions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,7 +76,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VoteCellID"];
     }
     
-    cell.textLabel.text = ((Vote *)self.votes[indexPath.row]).question.text;
+    cell.textLabel.text = ((Question *)self.questions[indexPath.row]).text;
     
     return cell;
 }
@@ -83,8 +85,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Vote *vote = [Vote insertInManagedObjectContext:[AppDelegate sharedInstance].managedObjectContext];
+    vote.question = self.questions[indexPath.row];
+    
     ElectionViewController *electionViewController = [[ElectionViewController alloc] initWithNibName:nil bundle:nil];
-    electionViewController.vote = self.votes[indexPath.row];
+    electionViewController.vote = vote;
     electionViewController.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
     [self.navigationController pushViewController:electionViewController animated:YES];
 }
@@ -93,6 +98,12 @@
 
 - (IBAction)backTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)createNewVoteTapped:(id)sender {
+    CreateVoteViewController *createVoteViewController = [[CreateVoteViewController alloc] initWithNibName:nil bundle:nil];
+    createVoteViewController.modalPresentationStyle = UIModalTransitionStyleCrossDissolve;
+    [self.navigationController pushViewController:createVoteViewController animated:YES];
 }
 
 @end

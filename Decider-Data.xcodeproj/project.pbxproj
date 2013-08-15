@@ -52,6 +52,8 @@
 		216BC64917B96DB400651FFB /* FillBallotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC64717B96DB400651FFB /* FillBallotViewController.m */; };
 		216BC64A17B96DB400651FFB /* FillBallotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC64817B96DB400651FFB /* FillBallotViewController.xib */; };
 		216BC65017B9802F00651FFB /* ChoiceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC64F17B9802F00651FFB /* ChoiceControl.m */; };
+		216BC65417BC1E4700651FFB /* CreateVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BC65217BC1E4700651FFB /* CreateVoteViewController.m */; };
+		216BC65517BC1E4700651FFB /* CreateVoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216BC65317BC1E4700651FFB /* CreateVoteViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +107,9 @@
 		216BC64817B96DB400651FFB /* FillBallotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FillBallotViewController.xib; sourceTree = "<group>"; };
 		216BC64E17B9802F00651FFB /* ChoiceControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceControl.h; sourceTree = "<group>"; };
 		216BC64F17B9802F00651FFB /* ChoiceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceControl.m; sourceTree = "<group>"; };
+		216BC65117BC1E4700651FFB /* CreateVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVoteViewController.h; sourceTree = "<group>"; };
+		216BC65217BC1E4700651FFB /* CreateVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVoteViewController.m; sourceTree = "<group>"; };
+		216BC65317BC1E4700651FFB /* CreateVoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateVoteViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +161,15 @@
 				212C4F0617A19E55007F8FB4 /* Model */,
 				212C4EE417A08327007F8FB4 /* AppDelegate.h */,
 				212C4EE517A08327007F8FB4 /* AppDelegate.m */,
-				212C4EED17A08327007F8FB4 /* Decider_Data.xcdatamodeld */,
+				216BC65117BC1E4700651FFB /* CreateVoteViewController.h */,
+				216BC65217BC1E4700651FFB /* CreateVoteViewController.m */,
+				216BC65317BC1E4700651FFB /* CreateVoteViewController.xib */,
+				216BC64117B94B6900651FFB /* ElectionViewController.h */,
+				216BC64217B94B6900651FFB /* ElectionViewController.m */,
+				216BC64317B94B6900651FFB /* ElectionViewController.xib */,
+				216BC64617B96DB400651FFB /* FillBallotViewController.h */,
+				216BC64717B96DB400651FFB /* FillBallotViewController.m */,
+				216BC64817B96DB400651FFB /* FillBallotViewController.xib */,
 				212C4EF017A08327007F8FB4 /* MainViewController.h */,
 				212C4EF117A08327007F8FB4 /* MainViewController.m */,
 				216BC63A17B9335E00651FFB /* MainViewController~ipad.xib */,
@@ -164,12 +177,6 @@
 				216BC63C17B9386800651FFB /* NewVoteViewController.h */,
 				216BC63D17B9386800651FFB /* NewVoteViewController.m */,
 				216BC63E17B9386800651FFB /* NewVoteViewController~ipad.xib */,
-				216BC64117B94B6900651FFB /* ElectionViewController.h */,
-				216BC64217B94B6900651FFB /* ElectionViewController.m */,
-				216BC64317B94B6900651FFB /* ElectionViewController.xib */,
-				216BC64617B96DB400651FFB /* FillBallotViewController.h */,
-				216BC64717B96DB400651FFB /* FillBallotViewController.m */,
-				216BC64817B96DB400651FFB /* FillBallotViewController.xib */,
 				216BC64E17B9802F00651FFB /* ChoiceControl.h */,
 				216BC64F17B9802F00651FFB /* ChoiceControl.m */,
 				212C4EDC17A08327007F8FB4 /* Supporting Files */,
@@ -180,6 +187,7 @@
 		212C4EDC17A08327007F8FB4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				212C4EED17A08327007F8FB4 /* Decider_Data.xcdatamodeld */,
 				212C4EDD17A08327007F8FB4 /* Decider-Data-Info.plist */,
 				212C4EDE17A08327007F8FB4 /* InfoPlist.strings */,
 				212C4EE117A08327007F8FB4 /* main.m */,
@@ -274,6 +282,7 @@
 				216BC63B17B9335E00651FFB /* MainViewController~ipad.xib in Resources */,
 				216BC64017B9386800651FFB /* NewVoteViewController~ipad.xib in Resources */,
 				212C4EE017A08327007F8FB4 /* InfoPlist.strings in Resources */,
+				216BC65517BC1E4700651FFB /* CreateVoteViewController.xib in Resources */,
 				212C4EE817A08327007F8FB4 /* Default.png in Resources */,
 				212C4EEA17A08327007F8FB4 /* Default@2x.png in Resources */,
 				212C4EEC17A08327007F8FB4 /* Default-568h@2x.png in Resources */,
@@ -306,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				212C4EE217A08327007F8FB4 /* main.m in Sources */,
+				216BC65417BC1E4700651FFB /* CreateVoteViewController.m in Sources */,
 				212C4EE617A08327007F8FB4 /* AppDelegate.m in Sources */,
 				216BC64417B94B6900651FFB /* ElectionViewController.m in Sources */,
 				212C4EEF17A08327007F8FB4 /* Decider_Data.xcdatamodeld in Sources */,

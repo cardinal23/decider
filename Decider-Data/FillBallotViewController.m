@@ -22,7 +22,7 @@ const CGFloat KChoiceHeight = 66.0f;
 const CGFloat kChoiceUnrankedMargin = 50.0f;
 const CGFloat kChoiceRankedMargin = 572.0f;
 
-@interface FillBallotViewController ()
+@interface FillBallotViewController () <UIGestureRecognizerDelegate>
 
 - (IBAction)backButtonTapped:(id)sender;
 - (IBAction)submitButtonTapped:(id)sender;
@@ -73,6 +73,7 @@ const CGFloat kChoiceRankedMargin = 572.0f;
     
     self.longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
     self.longPressRecognizer.minimumPressDuration = 0.0f;
+    self.longPressRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.longPressRecognizer];
     
     self.unrankedViews = [NSMutableArray array];
@@ -108,6 +109,9 @@ const CGFloat kChoiceRankedMargin = 572.0f;
 }
 
 - (IBAction)submitButtonTapped:(id)sender {
+    [self.vote addBallotsObject:self.ballot];
+    [[AppDelegate sharedInstance] saveContext];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setRankForRankedList
@@ -127,7 +131,7 @@ const CGFloat kChoiceRankedMargin = 572.0f;
         [self.unrankedViews enumerateObjectsUsingBlock:^(ChoiceControl *choiceControl, NSUInteger index, BOOL *stop) {
             if (!choiceControl.active) {
                 choiceControl.frame = CGRectMake(kChoiceUnrankedMargin,
-                                                 kChoiceTopMargin + index * (KChoiceHeight - 1),
+                                                 kChoiceTopMargin + index * (KChoiceHeight - 1.0f),
                                                  kChoiceWidth,
                                                  KChoiceHeight);
             }
@@ -136,7 +140,7 @@ const CGFloat kChoiceRankedMargin = 572.0f;
         [self.rankedViews enumerateObjectsUsingBlock:^(ChoiceControl *choiceControl, NSUInteger index, BOOL *stop) {
             if (!choiceControl.active) {
                 choiceControl.frame = CGRectMake(kChoiceRankedMargin,
-                                                 kChoiceTopMargin + index * (KChoiceHeight - 1),
+                                                 kChoiceTopMargin + index * (KChoiceHeight - 1.0f),
                                                  kChoiceWidth,
                                                  KChoiceHeight);
             }
@@ -225,6 +229,17 @@ const CGFloat kChoiceRankedMargin = 572.0f;
         self.activeList = nil;
         [self layoutChoicesAnimated:YES];
     }
+}
+
+#pragma mark - UIGestureRecognizerDelegate Methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch locationInView:self.view].y <= 50) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

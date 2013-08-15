@@ -48,7 +48,7 @@
         }
     }
     
-    NSLog(@"%@", preferences);
+    //NSLog(@"%@", preferences);
 
     return preferences;
 }
@@ -92,7 +92,7 @@
         }
     }
     
-    NSLog(@"%@", strongestPaths);
+    //NSLog(@"%@", strongestPaths);
     
     return strongestPaths;
 }
@@ -118,7 +118,7 @@
         results[answerA.text] = @(winCount);
     }
     
-    NSLog(@"%@", results);
+    //NSLog(@"%@", results);
     
     return results;
 }
