@@ -120,7 +120,6 @@ const CGFloat kChoiceRankedMargin = 572.0f;
         choiceControl.choice.rank = @([self.rankedViews count] - index);
         choiceControl.listOrder = index + 1;
     }];
-    
 }
 
 #pragma mark - Choices Layout

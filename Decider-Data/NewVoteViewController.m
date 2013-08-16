@@ -87,6 +87,7 @@
 {
     Vote *vote = [Vote insertInManagedObjectContext:[AppDelegate sharedInstance].managedObjectContext];
     vote.question = self.questions[indexPath.row];
+    vote.timestamp = [NSDate date];
     
     ElectionViewController *electionViewController = [[ElectionViewController alloc] initWithNibName:nil bundle:nil];
     electionViewController.vote = vote;
