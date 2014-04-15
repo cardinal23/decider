@@ -91,7 +91,7 @@
     cell.textLabel.text = vote.question.text;
     
     NSString *dateString = [self.dateFormatter stringFromDate:vote.timestamp];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %d ballots", dateString, [vote.ballots.allObjects count]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %lu ballots", dateString, (unsigned long)[vote.ballots.allObjects count]];
     cell.detailTextLabel.textColor = [UIColor darkGrayColor];
     
     return cell;

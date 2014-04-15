@@ -45,7 +45,7 @@
     [super viewWillAppear:animated];
     
     self.questionTextLabel.text = self.vote.question.text;
-    self.ballotCountLabel.text = [NSString stringWithFormat:@"%d %@", [self.vote.ballots count], NSLocalizedString(@" ballots have been submitted", @"Ballot count label text")];
+    self.ballotCountLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.vote.ballots count], NSLocalizedString(@" ballots have been submitted", @"Ballot count label text")];
 }
 
 - (void)didReceiveMemoryWarning
